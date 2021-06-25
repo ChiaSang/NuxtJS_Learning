@@ -1,13 +1,17 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <Navbar />
-    <Nuxt />
+    <div class="container">
+      <Nuxt />
+    </div>
   </div>
 </template>
 
 <style>
 html {
-  font-family: Helvetica,Arial,"Hiragino Sans GB","Microsoft Yahei","微软雅黑",STHeiti,"华文细黑",sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Helvetica, Arial, 'Hiragino Sans GB', 'Microsoft Yahei',
+    '微软雅黑', STHeiti, '华文细黑', sans-serif; */
   /* font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif; */
   font-size: 16px;
@@ -24,6 +28,10 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
+}
+
+.container-fluid {
+  padding: 0;
 }
 
 .button--green {

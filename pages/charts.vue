@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <!-- <LineGradient /> -->
+    <LineGradient />
     <BaseLine />
-    <!-- <LineGradient /> -->
   </div>
 </template>
 

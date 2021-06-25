@@ -1,19 +1,20 @@
 <template>
   <div class="container" id="LineGradient">
-    <div id="main" style="width: 800px; height: 500px"></div>
+    <div class="row">
+      <div ref="gradientline" style="width: 800px; height: 500px"></div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: 'LineGradient',
+  mounted() {
+    this.initChart()
+  },
   methods: {
-    drawChart() {
-      // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById('main'))
-      // 指定图表的配置项和数据
-      var option
-
-      var data = [
+    initChart() {
+      this.chartInstance = this.$echarts.init(this.$refs.gradientline)
+      const data = [
         ['2000-06-05', 116],
         ['2000-06-06', 129],
         ['2000-06-07', 135],
@@ -73,7 +74,7 @@ export default {
         return item[1]
       })
 
-      option = {
+      const option = {
         // Make gradient line here
         visualMap: [
           {
@@ -162,11 +163,8 @@ export default {
         ],
       }
       // 使用刚指定的配置项和数据显示图表。
-      myChart.setOption(option)
+      this.chartInstance.setOption(option)
     },
-  },
-  mounted() {
-    this.drawChart()
   },
 }
 </script>

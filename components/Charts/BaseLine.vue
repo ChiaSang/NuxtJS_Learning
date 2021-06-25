@@ -1,6 +1,8 @@
 <template>
   <div class="container" id="BaseLine">
-    <div id="main" style="width: 800px; height: 500px"></div>
+    <div class="row">
+      <div ref="baseline" class="col" style="width: 800px; height: 500px"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -12,81 +14,89 @@ export default {
     }
   },
   mounted() {
-    this.drawChart()
+    this.initChart()
     this.fetchData()
   },
   methods: {
-    drawChart() {
-      var chartDom = document.getElementById('main')
-      var myChart = this.$echarts.init(chartDom)
-      var option
-
-      option = {
+    initChart() {
+      this.chartInstance = this.$echarts.init(this.$refs.baseline)
+      const option = {
+        animation: true,
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          boundaryGap: false,
         },
         yAxis: {
           type: 'value',
-          scale: true, //从y的最小值开始
+          scale: true,
+        },
+        grid: {
+          top: '15%',
+          bottom: '15%',
+        },
+        // legend: {
+        //   left: 20,
+        //   top: '15%',
+        //   icon: 'circle',
+        // },
+        tooltip: {
+          trigger: 'axis',
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}, // 导出图片
+            dataView: {}, // 数据视图
+            magicType: {
+              type: ['bar', 'line'],
+            }, // 动态图表类型的切换
+          },
         },
         series: [
           {
-            data: [150, 230, 224, 218, 135, 147, 260],
-            type: 'line',
-            markPoint: {
-              // 标记点
-              data: [
-                {
-                  type: 'max',
-                },
-                {
-                  type: 'min',
-                },
-              ],
-            },
-            markLine: {
-              // 标记线
-              data: [
-                {
-                  type: 'average',
-                },
-              ],
-            },
-            markArea: {
-              // 标记区域
-              data: [
-                [
-                  {
-                    xAxis: 'Mon',
-                  },
-                  {
-                    xAxis: 'Thu',
-                  },
-                ],
-              ],
-            },
             smooth: true, // 是否为平滑线
-            lineStyle: {
-              // 线的样式设置
-              color: 'green',
-              type: 'solid', // dashed dotted solid
-            },
-            areaStyle: {
-              // 线和x轴形成的区域设置
-              color: 'pink',
-            },
+            type: 'line',
           },
         ],
       }
-      myChart.setOption(option)
+      this.chartInstance.setOption(option)
+      this.chartInstance.showLoading()
     },
     async fetchData() {
-      //Fetch风格请求方式
-      this.weather = await this.$axios.$get(
-        '/api/113.82,34.03/weather.json'
-      )
-      console.log(this.weather)
+      this.weather = await this.$axios.$get('/api/113.82,34.03/weather.json')
+      this.updateChart()
+      this.chartInstance.hideLoading()
+    },
+    updateChart() {
+      const results = this.weather.result
+      const hourlyTemperature = results.hourly.temperature
+      const hourlyTemperatureDate = hourlyTemperature.map(function (item) {
+        return item.datetime.slice(0, 16)
+      })
+      const hourlyTemperatureValue = hourlyTemperature.map(function (item) {
+        return item.value
+      })
+      const dataOption = {
+        title: [
+          {
+            left: 'center',
+            text: '48小时天气预报气温图',
+          },
+        ],
+        xAxis: {
+          type: 'category',
+          data: hourlyTemperatureDate,
+        },
+        yAxis: {
+          type: 'value',
+          data: hourlyTemperatureValue,
+        },
+        series: [
+          {
+            data: hourlyTemperatureValue,
+          },
+        ],
+      }
+      this.chartInstance.setOption(dataOption)
     },
   },
 }
