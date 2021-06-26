@@ -32,8 +32,9 @@ export default {
           scale: true,
         },
         grid: {
-          top: '15%',
-          bottom: '15%',
+          // top: '15%',
+          // bottom: '15%',
+          containLabel: true,
         },
         // legend: {
         //   left: 20,

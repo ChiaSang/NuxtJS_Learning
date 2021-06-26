@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h4>{{ cardsSection.title }}</h4>
-    <div class="row row-cols-1 row-cols-sm-4 row-cols-md-4 g-3 card-container">
+    <div class="row card-container">
       <SmallCard
         v-for="card in cardsSection.cards"
         :key="card.id"

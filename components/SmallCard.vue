@@ -1,5 +1,5 @@
 <template>
-  <div class="col card-container">
+  <div class="col-xs-12 col-lg-3 card-container">
     <a :href="`/items/${card.id}`">
       <img
         class="image"
