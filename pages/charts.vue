@@ -1,7 +1,25 @@
 <template>
   <div class="row">
-    <LineGradient />
-    <BaseLine />
+    <div class="col-md-6 col-xs-12">
+      <b-card class="align-items-center d-flex justify-content-center">
+        <LineGradient />
+      </b-card>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <b-card class="align-items-center d-flex justify-content-center">
+        <BaseLine />
+      </b-card>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <b-card class="align-items-center d-flex justify-content-center">
+        <LineGradient />
+      </b-card>
+    </div>
+    <div class="col-md-6 col-xs-12">
+      <b-card class="align-items-center d-flex justify-content-center">
+        <BaseLine />
+      </b-card>
+    </div>
   </div>
 </template>
 
@@ -20,5 +38,15 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.card {
+  margin-bottom: 30px;
+}
+.card-body {
+  margin: 0 auto;
+  padding: 0rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-height: 320px;
 }
 </style>

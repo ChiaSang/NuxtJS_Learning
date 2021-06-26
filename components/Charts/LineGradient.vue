@@ -1,9 +1,8 @@
 <template>
   <div
     id="LineGradient"
-    class="col-md-12"
     ref="gradientline"
-    style="width: 800px; height: 500px"
+    style="width: 500px; height: 300px"
   ></div>
 </template>
 <script>
@@ -95,17 +94,13 @@ export default {
           // },
         ],
 
-        title: [
-          {
-            left: 'center',
-            text: 'Gradient along the y axis',
+        title: {
+          left: 'left',
+          text: '沿Y轴根据值渐变效果',
+          textStyle: {
+            fontSize: 12,
           },
-          // {
-          //   top: '55%',
-          //   left: 'center',
-          //   text: 'Gradient along the x axis',
-          // },
-        ],
+        },
         tooltip: {
           trigger: 'axis',
         },
@@ -113,25 +108,25 @@ export default {
           {
             data: dateList,
           },
-          // {
-          //   data: dateList,
-          //   gridIndex: 1,
-          // },
         ],
-        yAxis: [
-          {},
-          // {
-          //   gridIndex: 1,
-          // },
-        ],
-        // grid: [
-        //   {
-        //     bottom: '60%',
-        //   },
-        //   {
-        //     top: '60%',
-        //   },
-        // ],
+        yAxis: [{}],
+        grid: {
+          top: '15%',
+          bottom: '5%',
+          left: '6%',
+          right: '5%',
+          containLabel: true,
+        },
+        toolbox: {
+          right: '5%',
+          feature: {
+            saveAsImage: {}, // 导出图片
+            dataView: {}, // 数据视图
+            magicType: {
+              type: ['bar', 'line'],
+            }, // 动态图表类型的切换
+          },
+        },
         series: [
           {
             type: 'line',

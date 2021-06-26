@@ -1,10 +1,5 @@
 <template>
-  <div
-    id="BaseLine"
-    class="col-md-12"
-    ref="baseline"
-    style="width: 800px; height: 300px"
-  ></div>
+  <div id="BaseLine" ref="baseline" style="width: 500px; height: 300px"></div>
 </template>
 <script>
 export default {
@@ -22,7 +17,6 @@ export default {
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.baseline)
       const option = {
-        animation: true,
         xAxis: {
           type: 'category',
           boundaryGap: false,
@@ -32,8 +26,10 @@ export default {
           scale: true,
         },
         grid: {
-          // top: '15%',
-          // bottom: '15%',
+          top: '15%',
+          bottom: '5%',
+          left: '6%',
+          right: '5%',
           containLabel: true,
         },
         // legend: {
@@ -43,8 +39,16 @@ export default {
         // },
         tooltip: {
           trigger: 'axis',
+          axisPointer: {
+            type: 'line',
+            z: 0,
+            lineStyle: {
+              color: '#109868',
+            },
+          },
         },
         toolbox: {
+          right: '5%',
           feature: {
             saveAsImage: {}, // 导出图片
             dataView: {}, // 数据视图
@@ -55,7 +59,6 @@ export default {
         },
         series: [
           {
-            smooth: true, // 是否为平滑线
             type: 'line',
           },
         ],
@@ -78,22 +81,25 @@ export default {
         return item.value
       })
       const dataOption = {
-        title: [
-          {
-            left: 'center',
-            text: '48小时天气预报气温图',
+        title: {
+          left: 'left',
+          text: '48小时天气预报气温图',
+          textStyle: {
+            fontSize: 12,
           },
-        ],
+        },
         xAxis: {
-          type: 'category',
+          boundaryGap: false,
           data: hourlyTemperatureDate,
         },
         yAxis: {
-          type: 'value',
-          data: hourlyTemperatureValue,
+          // data: hourlyTemperatureValue,
+          // scale: true,
         },
         series: [
           {
+            showSymbol: false,
+            smooth: true, // 是否为平滑线
             data: hourlyTemperatureValue,
           },
         ],
