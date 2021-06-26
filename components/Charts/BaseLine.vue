@@ -1,9 +1,10 @@
 <template>
-  <div class="container" id="BaseLine">
-    <div class="row">
-      <div ref="baseline" class="col" style="width: 800px; height: 500px"></div>
-    </div>
-  </div>
+  <div
+    id="BaseLine"
+    class="col-md-12"
+    ref="baseline"
+    style="width: 800px; height: 300px"
+  ></div>
 </template>
 <script>
 export default {

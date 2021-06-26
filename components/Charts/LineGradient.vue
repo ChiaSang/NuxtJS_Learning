@@ -1,9 +1,10 @@
 <template>
-  <div class="container" id="LineGradient">
-    <div class="row">
-      <div ref="gradientline" style="width: 800px; height: 500px"></div>
-    </div>
-  </div>
+  <div
+    id="LineGradient"
+    class="col-md-12"
+    ref="gradientline"
+    style="width: 800px; height: 500px"
+  ></div>
 </template>
 <script>
 export default {
@@ -82,7 +83,7 @@ export default {
             type: 'continuous',
             seriesIndex: 0,
             min: 0,
-            max: 800,
+            max: 500,
           },
           // {
           //   show: false,
@@ -123,14 +124,14 @@ export default {
           //   gridIndex: 1,
           // },
         ],
-        grid: [
-          {
-            bottom: '60%',
-          },
-          {
-            top: '60%',
-          },
-        ],
+        // grid: [
+        //   {
+        //     bottom: '60%',
+        //   },
+        //   {
+        //     top: '60%',
+        //   },
+        // ],
         series: [
           {
             type: 'line',
