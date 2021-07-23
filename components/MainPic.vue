@@ -6,7 +6,9 @@
       <p class="snippet">
         人并不是因为美丽才可爱，而是因为可爱才美丽。 ——托尔斯泰
       </p>
-      <button class="button--green btn">现在注册 / 登入</button>
+      <NuxtLink to="/login">
+        <button class="button--green btn">现在注册 / 登入</button>
+      </NuxtLink>
       <button variant="outline-dark" class="button--grey btn">了 解</button>
     </div>
     <!-- <img class="image" src="~assets/svg/fire-extinguisher.svg" alt="fire extinguisher"> -->

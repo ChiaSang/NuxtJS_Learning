@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-md-6 col-xs-12">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
       <b-card class="align-items-center d-flex justify-content-center">
         <LineGradient />
       </b-card>
