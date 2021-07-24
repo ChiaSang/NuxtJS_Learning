@@ -2,10 +2,11 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="header">简约、轻量、有态度！</h1>
-      <p class="snippet">
+      <div class="header">高效、省时、可溯源！</div>
+      <p class="snippet">数字驱动助力环保！</p>
+      <!-- <p class="snippet">
         人并不是因为美丽才可爱，而是因为可爱才美丽。 ——托尔斯泰
-      </p>
+      </p> -->
       <NuxtLink to="/login">
         <button class="button--green btn">现在注册 / 登入</button>
       </NuxtLink>
@@ -47,7 +48,7 @@ export default {}
 .header {
   color: #2f495e;
   font-weight: 900;
-  font-size: 5rem;
+  font-size: 3rem;
   margin-top: 2rem;
 }
 

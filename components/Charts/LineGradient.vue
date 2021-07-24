@@ -2,7 +2,7 @@
   <div
     id="LineGradient"
     ref="gradientline"
-    style="width: 500px; height: 300px"
+    style="width: 100%; height: 300px; border: 1px solid grey"
   ></div>
 </template>
 <script>
@@ -160,6 +160,9 @@ export default {
       }
       // 使用刚指定的配置项和数据显示图表。
       this.chartInstance.setOption(option)
+      window.onresize = () => {
+        this.chartInstance.resize()
+      }
     },
   },
 }

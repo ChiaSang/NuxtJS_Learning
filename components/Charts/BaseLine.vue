@@ -1,5 +1,10 @@
 <template>
-  <div id="BaseLine" ref="baseline" style="width: 500px; height: 300px"></div>
+  <div
+    :auto-resize="true"
+    id="BaseLine"
+    ref="baseline"
+    style="width: 100%; height: 300px; border: 1px solid grey"
+  ></div>
 </template>
 <script>
 export default {
@@ -7,15 +12,21 @@ export default {
   data() {
     return {
       weather: null,
+      chartInstance: null,
     }
   },
   mounted() {
     this.initChart()
     this.fetchData()
+    // const that = this
+    // window.addEventListener('resize', function () {
+    //   that.chartInstance.resize() //初始化的
+    // })
   },
   methods: {
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.baseline)
+
       const option = {
         xAxis: {
           type: 'category',
@@ -65,6 +76,9 @@ export default {
       }
       this.chartInstance.setOption(option)
       this.chartInstance.showLoading()
+      window.onresize = () => {
+        this.chartInstance.resize()
+      }
     },
     async fetchData() {
       this.weather = await this.$axios.$get('/api/113.82,34.03/weather.json')
@@ -105,6 +119,9 @@ export default {
         ],
       }
       this.chartInstance.setOption(dataOption)
+      window.onresize = () => {
+        this.chartInstance.resize()
+      }
     },
   },
 }

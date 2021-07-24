@@ -21,7 +21,9 @@
     "jquery": "^3.6.0",
     "nuxt": "^2.15.7",
     "v-calendar": "^2.3.0",
-    "vee-validate": "^3.4.11"
+    "vee-validate": "^3.4.11",
+    "vue-echarts": "^6.0.0-rc.6",
+    "vue-qr": "^2.5.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",

@@ -13,9 +13,9 @@
       </b-card-text>
     </b-card>
     <b-card class="card-main">
-      <h4 class="card-title">好看</h4>
+      <h4 class="card-title">优雅</h4>
       <b-card-text class="card-text">
-        界面甚是好看，取BootStrap样式带来舒适体验
+        界面甚是好看，优雅带来舒适体验
       </b-card-text>
     </b-card>
   </b-card-group>

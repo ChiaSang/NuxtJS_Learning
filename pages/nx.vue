@@ -16,13 +16,22 @@
         </div>
         <div v-else><b-form-input :placeholder="item"></b-form-input></div>
       </b-form-group>
-      <b-button variant="primary">生成二维码</b-button>
+      <vue-qr
+        :logoSrc="imageHeadUrl"
+        :text="Top_up_balance"
+        :size="200"
+      ></vue-qr>
+      <b-button v-on:click="genQRCode()" variant="primary">生成二维码</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
+import vueQr from 'vue-qr'
 export default {
+  components: {
+    vueQr,
+  },
   data() {
     return {
       base_items: [
@@ -85,11 +94,14 @@ export default {
         '安全填埋',
         '其他',
       ],
+      imageHeadUrl: '', //必须是require引入，否则不生效，或者报错
+      Top_up_balance: '',
     }
   },
   methods: {
-    genQrCode() {
-      qrcode.makeCode(elText.value)
+    genQRCode() {
+      this.imageHeadUrl = require('../assets/images/hbj.jpeg')
+      this.Top_up_balance = this.n1 + this.n2
     },
   },
 }

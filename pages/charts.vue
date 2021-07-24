@@ -1,24 +1,14 @@
 <template>
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-      <b-card class="align-items-center d-flex justify-content-center">
-        <LineGradient />
-      </b-card>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+      <!-- <b-card class="align-items-center"> -->
+      <base-line />
+      <!-- </b-card> -->
     </div>
-    <div class="col-md-6 col-xs-12">
-      <b-card class="align-items-center d-flex justify-content-center">
-        <BaseLine />
-      </b-card>
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <b-card class="align-items-center d-flex justify-content-center">
-        <LineGradient />
-      </b-card>
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <b-card class="align-items-center d-flex justify-content-center">
-        <BaseLine />
-      </b-card>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+      <!-- <b-card class="align-items-center"> -->
+      <line-gradient />
+      <!-- </b-card> -->
     </div>
   </div>
 </template>
