@@ -3,11 +3,6 @@
     <v-container fluid class="mx-auto">
       <v-row dense justify="center" no-gutters>
         <v-col cols="12" md="10" class="mb-md-4 mb-sm-3 mb-2 text-center">
-          <!-- <h1>
-            <router-link to="/home">Home</router-link> |
-            <router-link to="/about">About</router-link> |
-            <router-link to="/hello">HelloWorld</router-link>
-          </h1> -->
           <p class="green lighten-1 white--text">
             One should give up anger; one should abandon pride; one should
             overcome all fetters. I’ll never befall him who clings not to mind

@@ -3,7 +3,7 @@
     :auto-resize="true"
     id="BaseLine"
     ref="baseline"
-    style="width: 100%; height: 300px; border: 1px solid grey"
+    style="width: 100%; height: 300px"
   ></div>
 </template>
 <script>
@@ -18,10 +18,6 @@ export default {
   mounted() {
     this.initChart()
     this.fetchData()
-    // const that = this
-    // window.addEventListener('resize', function () {
-    //   that.chartInstance.resize() //初始化的
-    // })
   },
   methods: {
     initChart() {
@@ -76,9 +72,11 @@ export default {
       }
       this.chartInstance.setOption(option)
       this.chartInstance.showLoading()
-      window.onresize = () => {
-        this.chartInstance.resize()
-      }
+      this.$nextTick(() => {
+        window.onresize = () => {
+          this.chartInstance.resize()
+        }
+      })
     },
     async fetchData() {
       this.weather = await this.$axios.$get('/api/113.82,34.03/weather.json')
@@ -97,7 +95,7 @@ export default {
       const dataOption = {
         title: {
           left: 'left',
-          text: '48小时天气预报气温图',
+          text: '未来48小时天气预报气温图',
           textStyle: {
             fontSize: 12,
           },
@@ -119,9 +117,11 @@ export default {
         ],
       }
       this.chartInstance.setOption(dataOption)
-      window.onresize = () => {
-        this.chartInstance.resize()
-      }
+      this.$nextTick(() => {
+        window.onresize = () => {
+          this.chartInstance.resize()
+        }
+      })
     },
   },
 }

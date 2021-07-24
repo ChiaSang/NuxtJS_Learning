@@ -1,16 +1,51 @@
 <template>
-  <div class="row">
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-      <!-- <b-card class="align-items-center"> -->
-      <base-line />
-      <!-- </b-card> -->
-    </div>
-    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-      <!-- <b-card class="align-items-center"> -->
-      <line-gradient />
-      <!-- </b-card> -->
-    </div>
-  </div>
+  <b-container fluid>
+    <b-row align-v="center">
+      <b-col align-self="center" lg="4" md="6" sm="12" xs="12">
+        <div style="border:1px solid grey">
+        <base-line />
+        </div>
+      </b-col>
+      <b-col align-self="center" lg="4" md="6" sm="12" xs="12">
+        <div style="border:1px solid grey">
+        <base-line />
+        </div>
+      </b-col>
+      <b-col align-self="center" lg="4" md="6" sm="12" xs="12">
+        <div style="border:1px solid grey">
+        <line-gradient />
+        </div>
+      </b-col>
+      <b-col align-self="center" lg="4" md="6" sm="12" xs="12">
+        <div style="border:1px solid grey">
+        <line-gradient />
+        </div>
+      </b-col>
+      <b-col align-self="center" lg="4" md="6" sm="12" xs="12">
+        <div style="border:1px solid grey">
+        <base-line />
+        </div>
+      </b-col>
+      <!-- <div
+        class="col-lg-4 col-md-12 col-sm-12 col-xs-12"
+        style="margin: 2px; border: 1px solid grey"
+      >
+        <base-line />
+      </div>
+      <div
+        class="col-lg-4 col-md-12 col-sm-12 col-xs-12"
+        style="margin: 2px; border: 1px solid grey"
+      >
+        <line-gradient />
+      </div>
+      <div
+        class="col-lg-4 col-md-12 col-sm-12 col-xs-12"
+        style="margin: 2px; border: 1px solid grey"
+      >
+        <base-line /> -->
+      </div>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -28,15 +63,5 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-.card {
-  margin-bottom: 30px;
-}
-.card-body {
-  margin: 0 auto;
-  padding: 0rem;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  max-height: 320px;
 }
 </style>
