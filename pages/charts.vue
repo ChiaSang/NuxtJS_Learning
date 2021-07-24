@@ -1,11 +1,11 @@
 <template>
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
       <!-- <b-card class="align-items-center"> -->
       <base-line />
       <!-- </b-card> -->
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
       <!-- <b-card class="align-items-center"> -->
       <line-gradient />
       <!-- </b-card> -->
