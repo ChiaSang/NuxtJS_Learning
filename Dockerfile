@@ -16,6 +16,7 @@ RUN apk update \
     && apk add --no-cache git \
     && rm -rf /var/cache/apk/*
 
+RUN npm config set registry https://registry.npm.taobao.org
 RUN npm install
 RUN npm run build
 
