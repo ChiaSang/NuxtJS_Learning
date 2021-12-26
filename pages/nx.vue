@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import vueQr from 'vue-qr'
+import vueQr from "vue-qr";
 export default {
   components: {
     vueQr,
@@ -35,76 +35,44 @@ export default {
   data() {
     return {
       base_items: [
-        '产生单位:',
-        '电话:',
-        '通信地址:',
-        '邮编:',
-        '运输单位:',
-        '电话:',
-        '电话:',
-        '通信地址:',
-        '邮编:',
-        '接收单位:',
-        '通信地址:',
-        '邮编:',
-        '货物名称:',
-        '各类编号:',
-        '废物状态（含水率%）:',
-        '包装方式:',
-        '批次:',
-        '数量:',
-        '外运目的:',
-        '发运人:',
-        '运达地:',
-        '转移时间:',
-        '第一承运公司:',
-        '运输日期:',
-        '运输次数:',
-        '运输起点:',
-        '运输终点:',
-        '运输人签字:',
-        '第二承运公司:',
-        '运输日期:',
-        '运输次数:',
-        '运输起点:',
-        '运输终点:',
-        '运输人签字:',
-        '经营许可证号:',
-        '接收人:',
-        '接收日期:',
-        '废物处理方式:',
-        '单位负责人签字:',
-        '日期:',
+        "户号:",
+        "姓名:",
+        "电话:",
+        "表编号:",
+        "外运目的:",
+        "废物处理方式:",
+        "单位负责人签字:",
+        "日期:",
       ],
       n1: null,
       n2: null,
       transport_intentions: [
-        { text: '请选择', value: null },
-        '中转贮存',
-        '利用',
-        '处理',
-        '处置',
-        '其他',
+        { text: "请选择", value: null },
+        "中转贮存",
+        "利用",
+        "处理",
+        "处置",
+        "其他",
       ],
       disposal_methods: [
-        { text: '请选择', value: null },
-        '利用',
-        '贮存',
-        '焚烧',
-        '安全填埋',
-        '其他',
+        { text: "请选择", value: null },
+        "利用",
+        "贮存",
+        "焚烧",
+        "安全填埋",
+        "其他",
       ],
-      imageHeadUrl: '', //必须是require引入，否则不生效，或者报错
-      Top_up_balance: '',
-    }
+      imageHeadUrl: "", //必须是require引入，否则不生效，或者报错
+      Top_up_balance: "",
+    };
   },
   methods: {
     genQRCode() {
-      this.imageHeadUrl = require('../assets/images/hbj.jpeg')
-      this.Top_up_balance = this.n1 + this.n2
+      this.imageHeadUrl = require("../assets/images/hbj.jpeg");
+      this.Top_up_balance = this.n1 + this.n2;
     },
   },
-}
+};
 </script>
 
 <style scoped>
