@@ -1,31 +1,39 @@
 <template>
   <div>
     <user-info @userAdded="newUser"></user-info>
-    <b-container>
-      <b-row>
-        <b-col cols="6" v-for="(user, index) in userList" :key="index">
-          <b-card no-body class="overflow-hidden">
-            <b-row no-gutters>
-              <!-- <b-col md="6">
-            <b-card-img
-              src="https://picsum.photos/400/400/?image=20"
-              alt="Image"
-              class="rounded-0"
-            ></b-card-img>
-          </b-col> -->
-              <b-col>
-                <b-card-body title="UserCard">
-                  <b-card-text>name:{{ user.name }} </b-card-text>
-                  <b-card-text>id:{{ user.id }} </b-card-text>
-                  <b-card-text>sex:{{ user.sex }} </b-card-text>
-                  <b-card-text>time:{{ user.time }} </b-card-text>
-                </b-card-body>
-              </b-col>
-            </b-row>
-          </b-card>
-        </b-col>
-      </b-row>
-    </b-container>
+    <b-row>
+      <b-col
+        col
+        lg="4"
+        md="4"
+        sm="12"
+        v-for="(user, index) in userList"
+        :key="index"
+      >
+        <b-card no-body class="overflow-hidden">
+          <b-row
+            no-gutters
+            class="align-items-center justify-content-md-center"
+          >
+            <b-col col lg="5" md="5" sm="5">
+              <vue-qr
+                :logoSrc="imageHeadUrl"
+                :text="QRCodeData"
+                :size="100"
+              ></vue-qr>
+            </b-col>
+            <b-col col lg="7" md="7" sm="7">
+              <div>
+                <div>name:{{ user.name }}</div>
+                <div>id:{{ user.id }}</div>
+                <div>sex:{{ user.sex }}</div>
+                <div>time:{{ user.time }}</div>
+              </div>
+            </b-col>
+          </b-row>
+        </b-card>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -42,17 +50,26 @@ export default {
       base_items: ['户号:', '姓名:', '电话:', '表编号:', '外运目的:', '日期:'],
       userList: [],
       imageHeadUrl: '', //必须是require引入，否则不生效，或者报错
+      QRCodeData: '',
     }
   },
   methods: {
     genQRCode() {
       this.imageHeadUrl = require('../assets/images/hbj.jpeg')
-      this.Top_up_balance = this.n1 + this.n2
+      this.QRCodeData = this.userList.pop()
     },
     newUser(user) {
       this.userList.push(user)
       console.log(this.userList)
+      this.genQRCode()
     },
   },
 }
 </script>
+<style>
+.card-qr {
+  float: none;
+  display: inline-block;
+  vertical-align: middle;
+}
+</style>
