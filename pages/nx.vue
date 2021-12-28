@@ -1,68 +1,47 @@
 <template>
-  <b-container>
-    <b-card>
+  <div>
+    <user-info @userAdded="newUser"></user-info>
+    <b-container>
       <b-row>
-        <b-form v-for="(item, i) in base_items" :key="item" :label="item">
-          <b-col>
-            <b-form-group v-if="item === '外运目的:'">
-              <b-form-select
-                v-model="n1"
-                :options="transport_intentions"
-              ></b-form-select>
-            </b-form-group>
-            <span v-else
-              ><b-form-input :placeholder="item"></b-form-input
-            ></span>
-          </b-col>
-        </b-form>
-      </b-row>
-      <b-row>
-        <b-col>
-          <vue-qr
-            :logoSrc="imageHeadUrl"
-            :text="Top_up_balance"
-            :size="200"
-          ></vue-qr>
-        </b-col>
-        <b-col>
-          <b-button v-on:click="genQRCode()" variant="primary"
-            >生成二维码</b-button
-          >
+        <b-col cols="6" v-for="(user, index) in userList" :key="index">
+          <b-card no-body class="overflow-hidden">
+            <b-row no-gutters>
+              <!-- <b-col md="6">
+            <b-card-img
+              src="https://picsum.photos/400/400/?image=20"
+              alt="Image"
+              class="rounded-0"
+            ></b-card-img>
+          </b-col> -->
+              <b-col>
+                <b-card-body title="UserCard">
+                  <b-card-text>name:{{ user.name }} </b-card-text>
+                  <b-card-text>id:{{ user.id }} </b-card-text>
+                  <b-card-text>sex:{{ user.sex }} </b-card-text>
+                  <b-card-text>time:{{ user.time }} </b-card-text>
+                </b-card-body>
+              </b-col>
+            </b-row>
+          </b-card>
         </b-col>
       </b-row>
-    </b-card>
-  </b-container>
+    </b-container>
+  </div>
 </template>
 
 <script>
 import vueQr from 'vue-qr'
+import UserInfo from '../components/UserInfo.vue'
 export default {
   components: {
     vueQr,
+    UserInfo,
   },
   data() {
     return {
       base_items: ['户号:', '姓名:', '电话:', '表编号:', '外运目的:', '日期:'],
-      n1: null,
-      n2: null,
-      transport_intentions: [
-        { text: '请选择', value: null },
-        '中转贮存',
-        '利用',
-        '处理',
-        '处置',
-        '其他',
-      ],
-      disposal_methods: [
-        { text: '请选择', value: null },
-        '利用',
-        '贮存',
-        '焚烧',
-        '安全填埋',
-        '其他',
-      ],
+      userList: [],
       imageHeadUrl: '', //必须是require引入，否则不生效，或者报错
-      Top_up_balance: '',
     }
   },
   methods: {
@@ -70,15 +49,10 @@ export default {
       this.imageHeadUrl = require('../assets/images/hbj.jpeg')
       this.Top_up_balance = this.n1 + this.n2
     },
+    newUser(user) {
+      this.userList.push(user)
+      console.log(this.userList)
+    },
   },
 }
 </script>
-
-<style scoped>
-.container {
-  max-width: 800px;
-}
-.form-group {
-  margin-bottom: 1rem;
-}
-</style>
