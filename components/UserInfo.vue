@@ -1,69 +1,56 @@
 <template>
   <div class="row justify-content-md-center">
-    <b-col col lg="4" md="4" sm="10" class="align-items-center">
+    <b-col col lg="2" md="4" sm="10" class="align-items-center">
       <b-card title="新建用户信息">
-        <div>
-          <b-form-group
-            label="id:"
-            label-for="nested-id"
-            label-cols-sm="4"
-            label-align-sm="left"
-          >
+        <b-row>
+          <b-col sm="4">
+            <label for="input-small">Id:</label>
+          </b-col>
+          <b-col sm="8">
             <b-form-input
               id="nested-id"
               size="sm"
               v-model="userInfo.id"
             ></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="name:"
-            label-for="nested-name"
-            label-cols-sm="4"
-            label-align-sm="left"
-          >
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col sm="4">
+            <label for="input-small">Name:</label>
+          </b-col>
+          <b-col sm="8">
             <b-form-input
               id="nested-name"
               size="sm"
               v-model="userInfo.name"
             ></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="time:"
-            label-for="nested-time"
-            label-cols-sm="4"
-            label-align-sm="left"
-          >
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col sm="4">
+            <label for="input-small">Time:</label>
+          </b-col>
+          <b-col sm="8">
             <b-form-input
               id="nested-time"
               size="sm"
               type="time"
               v-model="userInfo.time"
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group
-            label="sex:"
-            label-cols-sm="4"
-            label-align-sm="left"
-            class="mb-0"
-            v-slot="{ ariaDescribedby }"
-          >
-            <!-- <b-form-radio-group
-              class="pt-2"
-              :options="['male', 'female', 'secret']"
-              :aria-describedby="ariaDescribedby"
-            ></b-form-radio-group> -->
-
+            ></b-form-input
+          ></b-col>
+        </b-row>
+        <b-row>
+          <b-col sm="4">
+            <label for="input-small">Sex:</label>
+          </b-col>
+          <b-col sm="8">
             <b-form-select
               size="sm"
-              :aria-describedby="ariaDescribedby"
               :options="transport_intentions"
               v-model="userInfo.sex"
-            ></b-form-select>
-          </b-form-group>
-        </div>
+            ></b-form-select
+          ></b-col>
+        </b-row>
         <div class="mt-3 text-center">
           <b-button variant="outline-secondary" @click.prevent="createNew"
             >提交信息</b-button
