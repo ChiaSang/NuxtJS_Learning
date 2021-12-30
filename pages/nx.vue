@@ -10,7 +10,7 @@
         v-for="(user, index) in userList"
         :key="index"
       >
-        <b-card no-body class="overflow-hidden">
+        <b-card no-body class="overflow-hidden" @click="deleteUser(index)">
           <b-row
             no-gutters
             class="align-items-center justify-content-md-center"
@@ -54,14 +54,18 @@ export default {
     }
   },
   methods: {
-    genQRCode() {
+    genQRCode(user) {
       this.imageHeadUrl = require('../assets/images/hbj.jpeg')
-      this.QRCodeData = this.userList.pop()
+      this.QRCodeData = JSON.stringify(user)
     },
     newUser(user) {
-      this.userList.push(user)
-      console.log(this.userList)
-      this.genQRCode()
+      console.log(`接收: ${JSON.stringify(user)}`)
+      this.userList.push(JSON.stringify(user))
+      this.genQRCode(user)
+      console.log(`数组接收: ${this.userList}`)
+    },
+    deleteUser(index) {
+      this.userList.splice(index, 1)
     },
   },
 }
