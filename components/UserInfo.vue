@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-md-center">
-    <b-col col lg="2" md="4" sm="10" class="align-items-center">
+    <b-col col lg="4" md="4" sm="12" class="align-items-center">
       <b-card title="新建用户信息">
         <b-row>
           <b-col sm="4">
