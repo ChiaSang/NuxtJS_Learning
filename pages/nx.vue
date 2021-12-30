@@ -60,9 +60,9 @@ export default {
     },
     newUser(user) {
       console.log(`接收: ${JSON.stringify(user)}`)
-      this.userList.push(JSON.stringify(user))
+      this.userList.push(user)
       this.genQRCode(user)
-      console.log(`数组接收: ${this.userList}`)
+      console.log(`数组接收: ${JSON.stringify(this.userList)}`)
     },
     deleteUser(index) {
       this.userList.splice(index, 1)
