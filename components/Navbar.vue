@@ -9,10 +9,11 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-item class="nav-link" to="/">主页</b-nav-item>
-          <b-nav-item class="nav-link" to="/charts">实时监测</b-nav-item>
+          <b-nav-item class="nav-link" to="/covid19">实时疫情</b-nav-item>
+          <b-nav-item class="nav-link" to="/charts">图表</b-nav-item>
           <b-nav-item class="nav-link" to="/items">类目</b-nav-item>
           <b-nav-item class="nav-link" to="/my">我的</b-nav-item>
-          <!-- <b-nav-item class="nav-link" to="/home">后台主页</b-nav-item> -->
+          <b-nav-item class="nav-link" to="/home">后台主页</b-nav-item>
           <b-nav-item class="nav-link" to="/nx">用户信息录入</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
