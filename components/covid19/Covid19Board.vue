@@ -172,7 +172,10 @@ export default {
             ? '0' + (date.getDate() + 1)
             : date.getDate()) + ' '
         var h = date.getHours() + ':'
-        var m = date.getMinutes() + ':'
+        var m =
+          date.getMinutes() + 1 < 10
+            ? '0' + date.getMinutes() + ':'
+            : date.getMinutes() + ':'
         var s = date.getSeconds()
         console.log(Y + M + D + h + m + s)
         return Y + M + D + h + m + s
