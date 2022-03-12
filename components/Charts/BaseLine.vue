@@ -15,21 +15,52 @@ export default {
   name: 'BaseLine',
   data() {
     return {
-      weather: null,
       chartInstance: null,
-      picdate: [],
-      picvalue: [],
+      picx: [],
+      picy: [],
     }
   },
-  mounted() {
-    this.getData(this.picdata)
-    // this.initChart()
-    // this.fetchData()
+  watch: {
+    picdata: {
+      deep: true, // 深度监听
+      handler(newVal, oldVal) {
+        // console.log('change: ' + newVal, oldVal)
+        this.initChart()
+        this.fillPicData(this.picdata)
+        this.chartInstance.hideLoading()
+      },
+    },
   },
+  mounted() {},
   methods: {
+    convertTimestamp(timestamp) {
+      // 比如需要这样的格式 yyyy-MM-dd hh:mm:ss
+      if (timestamp) {
+        var date = new Date(timestamp)
+        var Y = date.getFullYear() + '-'
+        var M =
+          (date.getMonth() + 1 < 10
+            ? '0' + (date.getMonth() + 1)
+            : date.getMonth() + 1) + '-'
+        var D =
+          (date.getDate() + 1 < 10
+            ? '0' + (date.getDate() + 1)
+            : date.getDate()) + ' '
+        var h = date.getHours() + ':'
+        var m =
+          date.getMinutes() + 1 < 10
+            ? '0' + date.getMinutes() + ':'
+            : date.getMinutes() + ':'
+        var s = date.getSeconds()
+        // console.log(Y + M + D + h + m + s)
+        return Y + M + D + h + m + s
+        // 输出结果：2022-01-07 18:51:15
+      } else {
+        return
+      }
+    },
     initChart() {
       this.chartInstance = this.$echarts.init(this.$refs.baseline)
-
       const option = {
         xAxis: {
           type: 'category',
@@ -61,19 +92,20 @@ export default {
             },
           },
         },
-        toolbox: {
-          right: '5%',
-          feature: {
-            saveAsImage: {}, // 导出图片
-            dataView: {}, // 数据视图
-            magicType: {
-              type: ['bar', 'line'],
-            }, // 动态图表类型的切换
-          },
-        },
+        // toolbox: {
+        //   right: '5%',
+        //   feature: {
+        //     saveAsImage: {}, // 导出图片
+        //     dataView: {}, // 数据视图
+        //     magicType: {
+        //       type: ['bar', 'line'],
+        //     }, // 动态图表类型的切换
+        //   },
+        // },
         series: [
           {
             type: 'line',
+            areaStyle: {},
           },
         ],
       }
@@ -85,26 +117,31 @@ export default {
         }
       })
     },
-    async fetchData() {
-      this.weather = await this.$axios.$get('/api/113.82,34.03/weather.json')
-      this.updateChart()
-      this.chartInstance.hideLoading()
-    },
-    updateChart() {
-      const results = this.weather.result
-      const hourlyTemperature = results.hourly.temperature
-      this.picdate = hourlyTemperature.map(function (item) {
-        return item.datetime.slice(0, 100)
+    fillPicData(arr) {
+      // console.log('使用自身数据源')
+      this.picx = arr.map(function (item) {
+        var date = new Date(parseInt(item.time))
+        var Y = date.getFullYear() + '-'
+        var M =
+          (date.getMonth() + 1 < 10
+            ? '0' + (date.getMonth() + 1)
+            : date.getMonth() + 1) + '-'
+        var D =
+          (date.getDate() + 1 < 10
+            ? '0' + (date.getDate() + 1)
+            : date.getDate()) + ' '
+        var h = date.getHours() + ':'
+        var m =
+          date.getMinutes() + 1 < 10
+            ? '0' + date.getMinutes() + ':'
+            : date.getMinutes() + ':'
+        var s = date.getSeconds()
+        // console.log(Y + M + D + h + m + s)
+        return Y + M + D + h + m + s
       })
-      this.picvalue = hourlyTemperature.map(function (item) {
+      this.picy = arr.map(function (item) {
         return item.value
       })
-      // const hourlyTemperatureDate = hourlyTemperature.map(function (item) {
-      //   return item.datetime.slice(0, 100)
-      // })
-      // const hourlyTemperatureValue = hourlyTemperature.map(function (item) {
-      //   return item.value
-      // })
       const dataOption = {
         title: {
           left: 'left',
@@ -115,7 +152,7 @@ export default {
         },
         xAxis: {
           boundaryGap: false,
-          data: this.picdate,
+          data: this.picx,
         },
         yAxis: {
           // data: hourlyTemperatureValue,
@@ -125,71 +162,21 @@ export default {
           {
             showSymbol: false,
             smooth: true, // 是否为平滑线
-            data: this.picvalue,
+            data: this.picy,
           },
         ],
       }
       this.chartInstance.setOption(dataOption)
+      // this.chartInstance.clear()
+      // //使用刚指定的配置项和数据显示图表。
+      // this.chartInstance.setOption(dataOption, true)
+
       this.$nextTick(() => {
         window.onresize = () => {
           this.chartInstance.resize()
         }
       })
-      // console.log(hourlyTemperatureDate)
-      // console.log(hourlyTemperatureValue)
-    },
-    getData(arr) {
-      if (arr) {
-        console.log('使用自身数据源')
-        this.picdate = arr.map(function (item) {
-          return item[0]
-        })
-        this.picvalue = arr.map(function (item) {
-          return item[1]
-        })
-        // console.log(this.picdate)
-        // console.log(this.picvalue)
-        this.initChart()
-
-        const dataOption = {
-          title: {
-            left: 'left',
-            text: this.mainTitle,
-            textStyle: {
-              fontSize: 12,
-            },
-          },
-          xAxis: {
-            boundaryGap: false,
-            data: this.picdate,
-          },
-          yAxis: {
-            // data: hourlyTemperatureValue,
-            // scale: true,
-          },
-          series: [
-            {
-              showSymbol: false,
-              smooth: true, // 是否为平滑线
-              data: this.picvalue,
-            },
-          ],
-        }
-        this.chartInstance.setOption(dataOption)
-        // this.chartInstance.clear()
-        // //使用刚指定的配置项和数据显示图表。
-        // this.chartInstance.setOption(dataOption, true)
-
-        this.$nextTick(() => {
-          window.onresize = () => {
-            this.chartInstance.resize()
-          }
-        })
-        this.chartInstance.hideLoading()
-      } else {
-        this.initChart()
-        this.fetchData()
-      }
+      this.chartInstance.hideLoading()
     },
   },
 }

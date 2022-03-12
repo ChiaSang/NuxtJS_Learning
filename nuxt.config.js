@@ -68,6 +68,13 @@ export default {
         '^/api': '', //将 /api 替换掉
       },
     },
+    '/onenet': {
+      target: 'https://openapi.heclouds.com',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/onenet': '', //将 /api 替换掉
+      },
+    },
   },
   bootstrapVue: {
     // Install the `IconsPlugin` plugin (in addition to `BootstrapVue` plugin)

@@ -4,8 +4,8 @@
       <b-col class="col text-right">
         <div text-variant="light">
           <small class="text-muted">
-            数据截止:
-            {{ formateCovid19timestamp(covid19chinainfo.updateTime) }}
+            数据截止:{{ this.updatetime }}
+            <p></p>
           </small>
         </div>
       </b-col>
@@ -13,33 +13,33 @@
 
     <b-row>
       <b-col
-       col lg="3"
-       md="3"
-       sm="6"
-       xs="6"
-       class="mt-2"
-       v-for="item in 7" :key="item"
-       >
+        col
+        lg="3"
+        md="4"
+        sm="12"
+        xs="12"
+        class="mt-4"
+        v-for="item in bulletinInfo"
+        :key="item.identifier"
+        @click="postIdentifier(item.identifier)"
+      >
         <b-card align="center" text-variant="info">
           <b-card-sub-title
             sub-title-text-variant="info"
             class="small sub-title-muted"
           >
-            较昨日{{
-              isIncr(covid19chinainfo.currentConfirmedIncr)
-            }}</b-card-sub-title
-          >
+            {{ item.name }}
+          </b-card-sub-title>
           <b-card-title title-tag="h2" text-variant="info">
-            {{ covid19chinainfo.currentConfirmedCount }}
+            {{ item.value }}
           </b-card-title>
           <b-card-sub-title
             sub-title-text-variant="info"
             class="small sub-title-muted"
-            >现存确诊人数</b-card-sub-title
+            >{{ item.identifier }}</b-card-sub-title
           >
         </b-card>
       </b-col>
-
     </b-row>
   </div>
 </template>
@@ -47,15 +47,8 @@
 <script>
 export default {
   props: {
-    covid19chinainfo: {
-      type: Object,
-      requires: true,
-      default: function () {
-        return {}
-      },
-    },
-    covid19globalinfo: {
-      type: Object,
+    bulletinInfo: {
+      type: Array,
       requires: true,
       default: function () {
         return {}
@@ -63,14 +56,14 @@ export default {
     },
   },
   data() {
-    return {}
+    return { updatetime: '' }
   },
-  mounted() {
-    console.log('covid19chinainfo' + JSON.stringify(this.covid19chinainfo))
-    console.log('covid19globalinfo' + JSON.stringify(this.covid19globalinfo))
+  updated() {
+    // DOM全部渲染完毕后执行
+    this.updatetime = this.convertTimestamp(parseInt(this.bulletinInfo[0].time))
   },
   methods: {
-    formateCovid19timestamp(timestamp) {
+    convertTimestamp(timestamp) {
       // 比如需要这样的格式 yyyy-MM-dd hh:mm:ss
       if (timestamp) {
         var date = new Date(timestamp)
@@ -89,15 +82,22 @@ export default {
             ? '0' + date.getMinutes() + ':'
             : date.getMinutes() + ':'
         var s = date.getSeconds()
-        console.log(Y + M + D + h + m + s)
+        // console.log(Y + M + D + h + m + s)
         return Y + M + D + h + m + s
         // 输出结果：2022-01-07 18:51:15
       } else {
         return
       }
     },
+    // updateTime(){
+    //   this.updatetime =  this.convertTimestamp(parseInt(this.bulletinInfo[0].time))
+    //   console.log(this.convertTimestamp(parseInt(this.bulletinInfo[0].time)))
+    // },
     isIncr(incr) {
       return incr >= 0 ? '+' + incr : incr
+    },
+    postIdentifier(identifier) {
+      this.$emit('bulletinIdentifier', identifier)
     },
   },
 }
